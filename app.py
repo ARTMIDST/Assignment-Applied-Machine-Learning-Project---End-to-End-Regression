@@ -7,7 +7,7 @@ import joblib
 import pandas as pd
 
 app = FastAPI()
-model = joblib.load('medical_cost_model.pkl')
+model = joblib.load('medical_cost_prediction_dataset.pkl')
 encoder = joblib.load('encoder.pkl')
 
 class InputData(BaseModel):
@@ -39,3 +39,4 @@ def predict(data: InputData):
     df[cat_cols] = encoder.transform(df[cat_cols])
     prediction = model.predict(df)
     return {"predicted_annual_medical_cost": prediction[0]}
+
